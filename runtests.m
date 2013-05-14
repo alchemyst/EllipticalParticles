@@ -1,5 +1,9 @@
 function runtests
 
+more off;
+
+starttime = time;
+
 allfiles = dir('*.m');
 startswith = @(long, short) strncmp(long, short, length(short));
 inlist = @(str, list) cellfun(@(s) any(strcmp(s, list)), str);
@@ -41,7 +45,13 @@ for f = nontestfiles'
     disp('')
 end
 
+fprintf('Total time for tests: %.2f seconds\n', time - starttime);
+
 fprintf('Out of %i files, %i had tests.\n', ...
         length(nontestfiles), filetests);
 fprintf('%i out of the %i total tests run, succeeded (%.0f %%)\n',...
         passed, tests, passed/tests*100);
+        
+        
+        
+ 
